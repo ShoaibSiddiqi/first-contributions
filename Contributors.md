@@ -1,5 +1,5 @@
 # Contributors
-
+- [Eduardo Hernandez](https://github.com/FaisalMohZ)
 - [Eduardo Hernandez](https://github.com/EduardoGHdez)
 - [Sunil Jamkatel](https://github.com/SunilJamkatel)
 - [Quentin Nicolle](https://github.com/quentinncl)
