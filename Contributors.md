@@ -1,5 +1,7 @@
 # Contributors
 - [Muhammad Yousaf](https://github.com/yousaf6224)
+  [Muhammad Yousaf](https://github.com/yousaf6224)
+}
 - [Eduardo Hernandez](https://github.com/EduardoGHdez)
 - [Sunil Jamkatel](https://github.com/SunilJamkatel)
 - [Quentin Nicolle](https://github.com/quentinncl)
