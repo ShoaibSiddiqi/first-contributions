@@ -8383,6 +8383,7 @@ Orandi Harris
 - [Ludwig Guerin](https://github.com/Voltra)
 - [Austin Casteel](https://github.com/longshotpro2)
 - [Aviv Ben Yosef](https://github.com/avivbyo)
+- [Irfan Afzaal](https://github.com/muhammadirfanafzaal)
 - [Nabeel-Ahmad826](https://github.com/Nabeel-Ahmad826)
 - [Muhammad Usama Amin](https://github.com/Usamaamin22)
 - [Muhammad Usama Amin](https://github.com/Usamaamin22)
