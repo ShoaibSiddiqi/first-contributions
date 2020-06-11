@@ -1,4 +1,5 @@
-# Contributors
+﻿# Contributors
+
 - [Kashif Naseer](https://github.com/kashifnaseer12345)
 - [Quratulain Ahmed](https://github.com/QuratulainAhmad)
 - [Eduardo Hernandez](https://github.com/EduardoGHdez)
@@ -8400,3 +8401,4 @@ Orandi Harris
 - [Usama Aslam](htpps://github.com/usamaaslam2319)
 - [Muhammad Subhan](https://github.com/subhan-22)
 - [Komal Mehmood](https://github.com/Komal-Mehmood)
+- [Usama Naqeeb](https://github.com/Usamanaqeeb)
