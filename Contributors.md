@@ -8399,3 +8399,4 @@ Orandi Harris
 - [Ishaalsaifi](https://github.com/ishaalsaifi)
 - [Usama Aslam](htpps://github.com/usamaaslam2319)
 - [Saira Khan](https://github.com/parrikhan)
+- [Parri Khan](https://github.com/parrikhan)
