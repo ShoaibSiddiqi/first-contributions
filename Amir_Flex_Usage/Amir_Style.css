@@ -1,0 +1,110 @@
+/* Adding Background Image To Browser */
+body
+{
+background: rgb(2,0,36);
+background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+background-size: cover;
+}
+.bloc_ele
+{
+display: flex;
+align-content: center;
+flex-basis: auto;
+}
+.bloc_ele div
+{
+  border:1px dashed white;
+  padding:10px;
+  margin: 10px;
+  align-content: center;
+
+}
+.bloc_ele .Box_1
+{
+order:4;
+justify-content: space-around;
+flex-grow: 20;
+}
+.Box_2
+{
+order:3;
+}
+.Box_3
+{
+order:2
+}
+.Box_4
+{
+  order:1;
+}
+
+.bloc_ele_2
+{
+display: flex;
+flex-direction: column-reverse;
+align-items: flex-end;
+flex-shrink: 1;
+}
+.bloc_ele_2 div
+{
+
+  margin:5px;
+  border:1px dashed green;
+  padding:10px;
+
+}
+
+
+.bloc_ele_3
+{
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+display: flex;
+padding: 10px;
+
+}
+.bloc_ele_3 div
+{
+  border:1px dashed yellow;
+    flex-grow: 15;
+}
+
+
+
+/* Media Query */
+
+
+
+@media(max-width: 560px)
+{
+.bloc_ele
+{
+border: 1px solid #000;
+background-color: #c6755a;
+}
+.desktop-hide{
+width: 100%;
+}
+}
+@media(max-width: 750px)
+{
+.bloc_ele_2
+{
+border: 1px solid #000;
+background: rgb(2,0,36);
+background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(105,112,110,1) 38%, rgba(125,164,156,1) 44%, rgba(132,157,160,1) 49%, rgba(146,143,168,1) 60%, rgba(198,90,197,1) 100%);
+}
+.desktop-hide{
+width: 100%;
+}
+}
+
+@media(max-width: 750px)
+{
+.bloc_ele_3 :hover
+{
+border: 2px double red;
+background-color: #928fa8;
+}
+}
