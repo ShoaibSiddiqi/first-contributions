@@ -1,0 +1,136 @@
+function Shortlist(favUrl, $shortlist, initialCount, maxItems) {
+
+    var $intruderMinimizeBtn = $('[data-shortlist-intruder-btn]');
+    var $intruderTotalCount = $('[data-shortlist-total-count]');
+    var $intruderMoreCount = $('[data-shortlist-more-count]');
+    var $shortlistTilePanel = $('[data-shortlist-panel]');
+
+    var isMinimizedSessionStorageKey = "isShortlistIntruderMinimized";
+
+    function setIsMinimizedSetting(isMinimized) {
+        sessionStorage.setItem(isMinimizedSessionStorageKey, isMinimized);
+    }
+
+    function getIsMinimizedSetting() {
+        return sessionStorage.getItem(isMinimizedSessionStorageKey) == 'true';
+    }
+
+    $intruderMinimizeBtn.click(function (e) {
+        toggleShortlistMinimized($shortlist.hasClass("is-tip"));
+    });
+
+    function toggleShortlistMinimized(isMinimized) {
+
+        if (isMinimized) {
+            $shortlist.removeClass("is-tip");
+        } else {
+            $shortlist.addClass("is-tip");
+        }
+
+        setIsMinimizedSetting(!isMinimized);
+    }
+
+    function toggleShortlistVisible(show) {
+        if (show) {
+            $shortlist.removeClass("is-hidden");
+        } else {
+            $shortlist.addClass("is-hidden");
+        }
+    }
+
+    if (!!$shortlist) {
+        if (initialCount > 0) {
+            toggleShortlistVisible(true);
+        }
+
+        if (!getIsMinimizedSetting()) {
+            toggleShortlistMinimized(true);
+        }
+    }
+
+    function updateCountDisplays(count) {
+        var moreCount = count - maxItems;
+
+        if (moreCount > 0) {
+            $intruderMoreCount.text("(" + moreCount + " more)");
+        } else {
+            $intruderMoreCount.text("");
+        }
+
+        $intruderTotalCount.text("(" + count + ")");
+    }
+
+    function getLogoUrl(token, text, orientation) {
+        var logoUrl = '/maker/logo/' + token;
+        logoUrl = !text && !orientation ? logoUrl : logoUrl + '?';
+        logoUrl = !text ? logoUrl : logoUrl + '&text=' + text;
+        logoUrl = !orientation ? logoUrl : logoUrl + '&layoutOrientation=' + orientation;
+        return logoUrl;
+    }
+
+    function createTile(data) {
+        var shortlistTile =
+            $('<a class="shortlist__design"></a>')
+            .attr('href', getLogoUrl(data.LogoToken, data.Text, data.LayoutOrientation))
+            .append(
+                $('<div class="responsive-embed"></div>')
+                .append($('<img class="responsive-embed__image" alt="shortlisted design" />')
+                    .attr('src', data.ImageUrl)
+                )
+            );
+
+        return shortlistTile;
+    }
+
+    function updateTiles(data) {
+        updateCountDisplays(data.length);
+
+        if (!!$shortlist) {
+            toggleShortlistVisible(data.length > 0);
+        }
+
+        $shortlistTilePanel.empty();
+
+        $(data).each(function (i, val) {
+
+            if (i > maxItems - 1) {
+                return;
+            }
+
+            $shortlistTilePanel.append(createTile(val));
+        });
+    }
+
+    function setFavourite(e, add) {
+        var $target = $(e.target);
+        var token = $target.attr('data-shortlist');
+        var text = $target.attr('data-shortlist-text');
+        var layout = $target.attr('data-shortlist-layout');
+
+        return new Promise(function (resolve, reject) {
+            $.post(favUrl, { token: token, add: add, text: text, layout: layout })
+
+                .done(function (data) {
+                    updateTiles(data);
+                    window.dispatchEvent(new Event('UpdateShortlistCount'));
+                    resolve();
+                });
+        });
+    }
+
+    function toggleShortlist(e) {
+        $(e.currentTarget).find('i.card-design__icon-shortlist').foundation('toggle');
+    }
+
+    this.removeFavourite = function (e) {
+        return setFavourite(e, false);
+    };
+
+    this.addFavourite = function (e) {
+        return setFavourite(e, true);
+    };
+
+    this.toggleShortlist = function (e) {
+        return toggleShortlist(e);
+    };
+}
