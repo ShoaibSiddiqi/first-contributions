@@ -1,0 +1,61 @@
+﻿function DropDown(el) {
+    this.dd = el;
+    this.opts = this.dd.find('ul.drop-checkbox__dropdown > li');
+    this.val = [];
+    this.index = [];
+    this.initEvents();
+}
+
+DropDown.prototype = {
+    initEvents: function() {
+        var obj = this;
+
+        obj.dd.on('click', function(event){
+            $(this).toggleClass('active');
+            event.stopPropagation();
+        });
+
+        obj.opts.find('input').change(function () {
+            toggleCheck($(this));
+        });
+
+        obj.opts.find('input').each(function (i, val) {
+            var $check = $(val);
+            if ($check.prop('checked')) {
+                toggleCheck($check);
+            }
+        });
+
+        function toggleCheck($checkbox) {
+            var opt = $checkbox.parent('li'),
+                val = $checkbox.val(),
+                idx = opt.index();
+
+            ($.inArray(val, obj.val) !== -1) ? obj.val.splice($.inArray(val, obj.val), 1) : obj.val.push(val);
+            ($.inArray(idx, obj.index) !== -1) ? obj.index.splice($.inArray(idx, obj.index), 1) : obj.index.push(idx);
+
+            if (obj.val.length === 0) {
+                obj.dd.children('label').text('All categories');
+            } else {
+                var text = obj.val.map(function (val) {
+                    return obj.opts.find('input[value="' + val + '"]').next().text().trim();
+                }).sort().join(', ');
+
+                obj.dd.children('label').text(text);
+            }
+        }
+    },
+    getValue : function() {
+        return this.val;
+    },
+    getIndex : function() {
+        return this.index;
+    }
+}
+
+$(function() {
+    $(document).click(function() {
+        // all dropdowns
+        $('.drop-checkbox').removeClass('active');
+    });
+});
